@@ -5,6 +5,10 @@ import RecipeDetails from './components/RecipeDetails';
 import './App.css';
 
 class App extends Component {
+  state={
+    recipes:[],
+    url: "https://www.food2fork.com/api/search?key=871808d2890050df9f41ba685fc2108f"
+  }
   render() {
     return (
       <React.Fragment>
