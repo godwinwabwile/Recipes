@@ -23,7 +23,7 @@ class Recipe extends Component{
                          <div className="card-body text-capitalize">
                             <h6>{title}</h6>
                             <h6 className="text-warning text-slanted">
-                                providec by {publisher}
+                                provided by {publisher}
                             </h6>
                          </div>
                          <div className="card-footer">
