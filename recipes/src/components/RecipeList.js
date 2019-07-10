@@ -14,22 +14,26 @@ class RecipeList extends Component{
                     <div className="row ">
                         <div className="col-10 mx-auto col-md-6 text-center text-uppercase mb3">
                             <h1 className="text-slanded">Recipe List</h1>
+                            
                         </div>
-
+                         {/* end of title*/}
+                    
                     </div>
-            {/* end of title*/}
+                    <div className="row">
+                    {/* pass recipe properties to the recipe component */}
+                    {
+                    recipes.map(recipe =>{
+                    return(
+                        <Recipe
+                            key={recipe.recipe_id}
+                            recipe={recipe}
+                        />  
+                        );
+                    })}
+                    </div>
+           
 
                 </div>
-            {/* pass recipe properties to the recipe component */}
-            {
-                recipes.map(recipe =>{
-                return(
-                    <Recipe
-                        key={recipe.recipe_id}
-                        recipe={recipe}
-                    />  
-                );
-            })}
                                 
                   
             </React.Fragment>
