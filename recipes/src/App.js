@@ -29,9 +29,9 @@ class App extends Component {
       console.log(error);
     }
   }
-  componentDidMount(){
-    this.getRecipes();
-  }
+  // componentDidMount(){
+  //   this.getRecipes();
+  // }
 //page index handler
 pageIndexHandler= (index) =>{
   this.setState({
