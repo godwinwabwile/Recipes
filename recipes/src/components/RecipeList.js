@@ -6,6 +6,7 @@ class RecipeList extends Component{
 
     render(){
         const {recipes} = this.props;  
+        const {recipeDetailsHandler} = this.props;
         return(
             <React.Fragment>
                 <RecipeSearch/>
@@ -27,6 +28,7 @@ class RecipeList extends Component{
                         <Recipe
                             key={recipe.recipe_id}
                             recipe={recipe}
+                            recipeDetailsHandler={()=>recipeDetailsHandler(0,recipe.recipe_id )}
                         />  
                         );
                     })}
