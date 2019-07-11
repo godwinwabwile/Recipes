@@ -7,7 +7,8 @@ import './App.css';
 class App extends Component {
   state={
     recipes:recipes,
-    url: "https://www.food2fork.com/api/search?key=871808d2890050df9f41ba685fc2108f"
+    url: "https://www.food2fork.com/api/search?key=871808d2890050df9f41ba685fc2108f",
+    details_id: 35385
   }
 //  //Ajax request
 //   //method pulls data from the Api with the Async await
@@ -34,8 +35,8 @@ class App extends Component {
     // console.log(this.state.recipes);
     return (
       <React.Fragment>
-        <RecipeList recipes={this.state.recipes}/>
-        <RecipeDetails/>
+        {/* <RecipeList recipes={this.state.recipes}/> */}
+        <RecipeDetails details_id={this.state.details_id}/>
       </React.Fragment>
     );
   }
