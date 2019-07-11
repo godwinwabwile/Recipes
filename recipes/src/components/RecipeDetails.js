@@ -36,13 +36,16 @@ class RecipeDetails extends Component{
             title,
             ingredients
         } = this.state.recipe;
+        const{pageIndexHandler} = this.props;
         return(
             <React.Fragment>
                <div className="container">
                     <div className="row">
                         {/* left screen image and button column */}
                         <div className="col-10 mx-auto col-md-6 my-3">
-                            <button type="button" className="btn btn-warning mb-5 text-capitalize text-slanded">
+                            <button type="button" className="btn btn-warning mb-5 text-capitalize text-slanded"
+                            onClick={()=>pageIndexHandler(1)}
+                            >
                                 back to recipes
                             </button>
                             <img

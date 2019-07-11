@@ -8,7 +8,8 @@ class App extends Component {
   state={
     recipes:recipes,
     url: "https://www.food2fork.com/api/search?key=871808d2890050df9f41ba685fc2108f",
-    details_id: 35385
+    details_id: 35385,
+    page_id: 0
   }
 //  //Ajax request
 //   //method pulls data from the Api with the Async await
@@ -31,12 +32,27 @@ class App extends Component {
 //   componentDidMount(){
 //     this.getRecipes();
 //   }
+//page index handler
+pageIndexHandler= (index) =>{
+  this.setState({
+    page_id: index
+  })
+}
+//a switch statement that enables conditional rendering
+ conditionalRendering=(index)=>{
+  switch (index) {
+    default:
+      case 1:
+        return(<RecipeList recipes={this.state.recipes}/>)
+        case 0:
+          return(<RecipeDetails details_id={this.state.details_id} pageIndexHandler={this.pageIndexHandler}/>)
+  }
+}
   render() {
     // console.log(this.state.recipes);
     return (
-      <React.Fragment>
-        {/* <RecipeList recipes={this.state.recipes}/> */}
-        <RecipeDetails details_id={this.state.details_id}/>
+      <React.Fragment> 
+          {this.conditionalRendering(this.state.page_id)}
       </React.Fragment>
     );
   }
