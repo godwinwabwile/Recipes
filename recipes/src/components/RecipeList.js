@@ -1,29 +1,37 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Recipe from './Recipe';
 import RecipeSearch from './RecipeSearch';
 
-class RecipeList extends Component{
-
-    render(){
-        const {recipes} = this.props;  
-        const {recipeDetailsHandler} = this.props;
+function RecipeList(props){
+        const {recipes, value} = props;  
+        const {recipeDetailsHandler,recipeSearchChangeHandler, searchSubmitHandler } = props;
         return(
             <React.Fragment>
-                <RecipeSearch/>
+                {/*recipe search component  */}
+                <RecipeSearch 
+                // passing the searchSubmitHandler
+                searchSubmitHandler = {searchSubmitHandler}
+                // paaing the recipeSearchChangeHandler
+                recipeSearchChangeHandler={recipeSearchChangeHandler}
+                // value
+                value={value}
+                />
+
                 <div className="container my-5">
                     {/* title */}
                     <div className="row ">
                         <div className="col-10 mx-auto col-md-6 text-center text-uppercase mb3">
-                            <h1 className="text-slanded">Recipe List</h1>
+                            <h1 className="text-slanded">Top 30 Recipes</h1>
                             
                         </div>
                          {/* end of title*/}
                     
                     </div>
+                   
                     <div className="row">
                     {/* pass recipe properties to the recipe component */}
                     {
-                    recipes.map(recipe =>{
+                   recipes.map(recipe =>{
                     return(
                         <Recipe
                             key={recipe.recipe_id}
@@ -39,7 +47,8 @@ class RecipeList extends Component{
                                 
                   
             </React.Fragment>
+            
         )
     }
-}
+
 export default RecipeList;

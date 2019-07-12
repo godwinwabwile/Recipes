@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import {recipes} from './tempList';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
+import LoadingError from './components/LoadingError';
 import './App.css';
 
 class App extends Component {
   state={
     recipes:recipes,
     url: "https://www.food2fork.com/api/search?key=871808d2890050df9f41ba685fc2108f",
+    base_url: "https://www.food2fork.com/api/search?key=871808d2890050df9f41ba685fc2108f",
     details_id: 35385,
-    page_id: 1
+    page_id: 1,
+    search: '',
+    query:"&q="
   }
  //Ajax request
   //method pulls data from the Api with the Async await
@@ -45,12 +49,38 @@ recipeDetailsHandler =(index,recipe_id)=>{
     details_id: recipe_id
   })
 }
+// method handles the search input in RecipeSearch component
+recipeSearchChangeHandler = (event)=>{
+  this.setState(
+    {search:event.target.value}
+  )
+}
+
+// method handles the submit functionality in the RecipeSearch component
+searchSubmitHandler = (event) =>{
+  event.preventDefault();
+  const{base_url,query,search} =this.state;
+  this.setState(()=>{
+    return{url:`${base_url}${query}${search}`,
+    search: "" } },
+    ()=>{
+      this.getRecipes();
+    })
+}
 //a switch statement that enables conditional rendering
  conditionalRendering=(index)=>{
   switch (index) {
     default:
       case 1:
-        return(<RecipeList recipes={this.state.recipes} recipeDetailsHandler={this.recipeDetailsHandler}/>)
+            return(
+              <RecipeList 
+              recipes={this.state.recipes} 
+              recipeDetailsHandler={this.recipeDetailsHandler}
+              value={this.state.search}
+              searchSubmitHandler={this.searchSubmitHandler} //passed submit handler
+              recipeSearchChangeHandler={this.recipeSearchChangeHandler} //passed input handler
+              />
+              )
         case 0:
           return(<RecipeDetails details_id={this.state.details_id} pageIndexHandler={this.pageIndexHandler}/>)
   }

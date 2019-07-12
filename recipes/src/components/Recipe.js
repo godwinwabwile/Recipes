@@ -7,8 +7,7 @@ class Recipe extends Component{
            image_url,
            title,
            publisher,
-           source_url,
-           recipe_id
+           source_url
        } = this.props.recipe;
        const {recipeDetailsHandler} = this.props;
         return(
