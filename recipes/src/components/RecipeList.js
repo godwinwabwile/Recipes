@@ -1,8 +1,10 @@
 import React from 'react';
 import Recipe from './Recipe';
+import LoadingError from './LoadingError';
 import RecipeSearch from './RecipeSearch';
 
 function RecipeList(props){
+        
         const {recipes, value} = props;  
         const {recipeDetailsHandler,recipeSearchChangeHandler, searchSubmitHandler } = props;
         return(
@@ -30,16 +32,25 @@ function RecipeList(props){
                    
                     <div className="row">
                     {/* pass recipe properties to the recipe component */}
-                    {
-                   recipes.map(recipe =>{
-                    return(
-                        <Recipe
-                            key={recipe.recipe_id}
-                            recipe={recipe}
-                            recipeDetailsHandler={()=>recipeDetailsHandler(0,recipe.recipe_id )}
-                        />  
-                        );
-                    })}
+                    { recipes?
+                        recipes.map(recipe =>{
+                            return(
+                                <Recipe
+                                    key={recipe.recipe_id}
+                                    recipe={recipe}
+                                    recipeDetailsHandler={()=>recipeDetailsHandler(0,recipe.recipe_id )}
+                                />  
+                                );
+                            }):
+                            ()=>{
+                                return(
+                                    <LoadingError/>
+                                )
+                                    
+                                
+                            }   
+                    }
+                   
                     </div>
            
 

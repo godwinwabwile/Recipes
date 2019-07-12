@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {recipes} from './tempList';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
-import LoadingError from './components/LoadingError';
 import './App.css';
 
 class App extends Component {
@@ -33,9 +32,9 @@ class App extends Component {
       console.log(error);
     }
   }
-  // componentDidMount(){
-  //   this.getRecipes();
-  // }
+  componentDidMount(){
+    this.getRecipes();
+  }
 //page index handler
 pageIndexHandler= (index) =>{
   this.setState({
